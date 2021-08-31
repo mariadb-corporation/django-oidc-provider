@@ -286,6 +286,7 @@ class ProviderInfoView(View):
                                                         'client_secret_basic']
 
         dic['claims_supported'] = settings.get('OIDC_CLAIMS_SUPPORTED', [])
+        dic['scopes_supported'] = settings.get('OIDC_SCOPES_SUPPORTED', [])
 
         if settings.get('OIDC_SESSION_MANAGEMENT_ENABLE'):
             dic['check_session_iframe'] = site_url + reverse('oidc_provider:check-session-iframe')

@@ -172,6 +172,16 @@ class DefaultSettings(object):
         return []
 
     @property
+    def OIDC_SCOPES_SUPPORTED(self):
+        """
+        RECOMMENDED. A list of Claims names that you may support. Does not need
+        to be exhaustive for security reasons.
+
+        https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata
+        """
+        return []
+
+    @property
     def OIDC_TEMPLATES(self):
         return {
             'authorize': 'oidc_provider/authorize.html',
