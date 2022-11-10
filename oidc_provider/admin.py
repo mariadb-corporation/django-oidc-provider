@@ -88,7 +88,9 @@ class TokenAdmin(admin.ModelAdmin):
 
     raw_id_fields = ['user']
 
-    list_display = ["id", "user", "session_id"]
+    list_display = ["id", "user", "session_id", "client", "expires_at"]
+    list_filter = ["client", ]
+    search_fields = ("user__email", "session_id", "access_token", "refresh_token")
 
     def has_add_permission(self, request):
         return False
