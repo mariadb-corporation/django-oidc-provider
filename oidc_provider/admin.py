@@ -77,6 +77,8 @@ class CodeAdmin(admin.ModelAdmin):
 
     raw_id_fields = ['user']
 
+    list_display = ("id", "user", "session_id")
+
     def has_add_permission(self, request):
         return False
 
@@ -85,6 +87,8 @@ class CodeAdmin(admin.ModelAdmin):
 class TokenAdmin(admin.ModelAdmin):
 
     raw_id_fields = ['user']
+
+    list_display = ["id", "user", "session_id"]
 
     def has_add_permission(self, request):
         return False

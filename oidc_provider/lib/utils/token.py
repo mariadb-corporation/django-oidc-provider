@@ -99,7 +99,7 @@ def client_id_from_id_token(id_token):
     return aud
 
 
-def create_token(user, client, scope, id_token_dic=None):
+def create_token(user, client, scope, id_token_dic=None, session_id=None):
     """
     Create and populate a Token object.
     Return a Token object.
@@ -116,10 +116,12 @@ def create_token(user, client, scope, id_token_dic=None):
     token.expires_at = timezone.now() + timedelta(seconds=settings.get("OIDC_TOKEN_EXPIRE"))
     token.scope = scope
 
+    token.session_id = session_id
+
     return token
 
 
-def create_code(user, client, scope, nonce, is_authentication, code_challenge=None, code_challenge_method=None):
+def create_code(user, client, scope, nonce, is_authentication, code_challenge=None, code_challenge_method=None, session_id=None):
     """
     Create and populate a Code object.
     Return a Code object.
@@ -138,6 +140,7 @@ def create_code(user, client, scope, nonce, is_authentication, code_challenge=No
     code.scope = scope
     code.nonce = nonce
     code.is_authentication = is_authentication
+    code.session_id = session_id
 
     return code
 

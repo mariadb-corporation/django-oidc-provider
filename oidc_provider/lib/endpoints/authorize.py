@@ -140,7 +140,8 @@ class AuthorizeEndpoint(object):
                     nonce=self.params['nonce'],
                     is_authentication=self.is_authentication,
                     code_challenge=self.params['code_challenge'],
-                    code_challenge_method=self.params['code_challenge_method'])
+                    code_challenge_method=self.params['code_challenge_method'],
+                    session_id=self.request.session.session_key)
                 code.save()
 
             if self.grant_type == 'authorization_code':
@@ -150,7 +151,8 @@ class AuthorizeEndpoint(object):
                 token = create_token(
                     user=self.request.user,
                     client=self.client,
-                    scope=self.params['scope'])
+                    scope=self.params['scope'],
+                    session_id=self.request.session.session_key)
 
                 # Check if response_type must include access_token in the response.
                 if (self.params['response_type'] in

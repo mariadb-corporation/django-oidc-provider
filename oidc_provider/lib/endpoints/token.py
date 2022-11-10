@@ -176,7 +176,8 @@ class TokenEndpoint(object):
         token = create_token(
             user=self.code.user,
             client=self.code.client,
-            scope=self.code.scope)
+            scope=self.code.scope,
+            session_id=self.code.session_id)
 
         if self.code.is_authentication:
             id_token_dic = create_id_token(
@@ -221,7 +222,8 @@ class TokenEndpoint(object):
         token = create_token(
             user=self.token.user,
             client=self.token.client,
-            scope=scope)
+            scope=scope,
+            session_id=self.token.session_id)
 
         # If the Token has an id_token it's an Authentication request.
         if self.token.id_token:
